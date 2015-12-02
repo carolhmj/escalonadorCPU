@@ -11,10 +11,8 @@ def inputReader(arquivo):
 	try:
 	    reader = csv.reader(f)
 	    for row in reader:
-	    	row2 = []
-	    	for i in row:
-	    		row2.append(int(i))
-			r.append(row2)
+			r.append(row)
 	finally:
 		f.close()
+		r = [[int(j) for j in i] for i in r]
 		return r

@@ -14,7 +14,7 @@ class Priority():
 		plista = []
 		processoAtual = None
 		inicioProcessoAtual = 0
-
+		"""
 		print "antes do while: "
 		for i in self.processos:
 			print "chegada: " + str(i.chegada)
@@ -22,35 +22,37 @@ class Priority():
 			print "burst: " + str(i.burst)
 			print "prioridade: " + str(i.prioridade)
 			print " "
-
+		"""
 		time.sleep(3)
 		while(True):
 
-			proxChegada = self.processos[indiceProx]
-			print "indiceProx do começo: " + str(indiceProx)
-			print "proxChegada.chegada: " + str(proxChegada.chegada)
-			print "proxChegada.pid: " + str(proxChegada.pid)
-			print "clock: " + str(clock)
-			time.sleep(1)
+			if (indiceProx < len(self.processos)):
+				proxChegada = self.processos[indiceProx]
+				if (proxChegada.chegada == clock):
+					heappush(plista,(proxChegada.prioridade,proxChegada.chegada,proxChegada))
+					#print "tamanho da plista: " + str(len(plista))
+					indiceProx = indiceProx + 1
+					#print "indiceProx: " + str(indiceProx)			
+			
+			print "clock: " + str(clock) 
 
-			if (proxChegada.chegada == clock):
-				heappush(plista,(proxChegada.prioridade,proxChegada.chegada,proxChegada))
-				print "tamanho da plista: " + str(len(plista))
-				indiceProx = indiceProx + 1
-				print "indiceProx: " + str(indiceProx)
-
-
-			if ((processoAtual == None) and (plista)):
-				a,b,processoAtual = heappop(plista)
+			if (processoAtual == None):
+				print "não há um processo executando, vamos procurar um!"
+				if (plista):
+					print "temos uma lista de onde tirar!"
+					a,b,processoAtual = heappop(plista)
+				print "processo " + str(processoAtual.pid) + " começou!"	
 				inicioProcessoAtual = clock
-			elif (processoAtual != None):
+			if (processoAtual != None):
+				print "executando o processo " + str(processoAtual.pid)
 				processoAtual.timeleft = processoAtual.timeleft - 1
+				print "falta " + str(processoAtual.timeleft) + " para ele acabar"
 				if (processoAtual.timeleft == 0):
-					processoAtual.historico.append((inicioProcessoAtual,clock))
+					processoAtual.historico.append((inicioProcessoAtual,clock+1))
 					processoAtual = None
-				if (indiceProx == len(self.processos)):
-					break
-
+					if (indiceProx == len(self.processos) and not plista):
+						break
+			print "\n\n"		
 			clock = clock + 1
 
 #class Escalonador():
@@ -87,7 +89,7 @@ def main():
 		print " " """
 
 	e = Priority(processlist)
-	#e.run()
+	e.run()
 
 	
 
