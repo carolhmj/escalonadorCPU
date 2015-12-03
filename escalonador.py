@@ -2,6 +2,7 @@
 # -*- coding: utf-8 -*-
 
 from inputReader import *
+from outputWriter import *
 from heapq import *
 import time
 
@@ -23,7 +24,6 @@ class Priority():
 			print "prioridade: " + str(i.prioridade)
 			print " "
 		"""
-		time.sleep(3)
 		while(True):
 
 			if (indiceProx < len(self.processos)):
@@ -90,8 +90,6 @@ def main():
 
 	e = Priority(processlist)
 	e.run()
-
-	
 
 if __name__ == "__main__":
      main()
