@@ -4,10 +4,10 @@
 from escalonador import *
 from heapq import *
 
-"""Classe que representa um escalonador por prioridade preemptivo. 
-Ele recebe uma lista de processos, e possui uma maneira de retornar as 
-prioridades de determinado processo"""
-class PriorityP():
+class PriorityP(object):
+	"""Classe que representa um escalonador por prioridade preemptivo. 
+	Ele recebe uma lista de processos, e possui uma maneira de retornar as 
+	prioridades de determinado processo"""
 	def __init__(self, processos):
 		self.processos = sorted(processos, key=lambda x: x.chegada)
 	def prioridadeProcesso(self, processo):
@@ -52,7 +52,7 @@ class PriorityP():
 				do topo do heap tem mais prioridade que ele"""
 
 				if (plista and (self.prioridadeProcesso(plista[0][2]) < self.prioridadeProcesso(processoAtual) ) ):
-					print "processo " + str(processoAtual.pid) + " preemptado em favor do processo " + str(plista[0][2].pid)
+					print "processo " + str(processoAtual.pid) + " com prioridade " + str(self.prioridadeProcesso(processoAtual)) + " preemptado em favor do processo " + str(plista[0][2].pid) + " com prioridade " + str(self.prioridadeProcesso(plista[0][2]))
 					processoAtual.historico.append([inicioProcessoAtual, clock])
 
 					a, b, processoAtual = heappushpop(plista, (self.prioridadeProcesso(processoAtual), processoAtual.chegada, processoAtual))
