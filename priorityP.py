@@ -1,7 +1,8 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
-from escalonador import *
+from processo import Processo
+from inputReader import *
 from heapq import *
 
 class PriorityP(object):
@@ -29,6 +30,7 @@ class PriorityP(object):
 					print "chegou o processo " + str(proxChegada.pid)
 					#Insere o valor na heap. O critério de ordenação é primeiro a prioridade do processo,
 					#depois o tempo de chegada
+					proxChegada.timeleft = proxChegada.burst
 					heappush(plista, (self.prioridadeProcesso(proxChegada), proxChegada.chegada, proxChegada))
 					#Agora que já colocamos esse processo na heap, podemos investigar os próximos processos
 					#na lista de processos que chegarão

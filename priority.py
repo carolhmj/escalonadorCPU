@@ -1,14 +1,19 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
-from inputReader import *
-from outputWriter import *
 from heapq import *
-import time
+from inputReader import *
+from processo import Processo
 
-class Priority():
+class Priority(object):
+	"""Classe que representa um escalonador de prioridade não-preemptivo.
+	Ele recebe uma lista de processos, e define sua função de prioridade
+	como a própria prioridade do processo"""
+
 	def __init__(self,processos):
 		self.processos = sorted(processos, key=lambda x: x.chegada)
+	def prioridadeProcesso(self, processo):
+		return processo.prioridade
 	def run(self):
 		clock = 0
 		indiceProx = 0
@@ -29,7 +34,8 @@ class Priority():
 			if (indiceProx < len(self.processos)):
 				proxChegada = self.processos[indiceProx]
 				if (proxChegada.chegada == clock):
-					heappush(plista,(proxChegada.prioridade,proxChegada.chegada,proxChegada))
+					proxChegada.timeleft = proxChegada.burst
+					heappush(plista,(self.prioridadeProcesso(proxChegada), proxChegada.chegada, proxChegada))
 					#print "tamanho da plista: " + str(len(plista))
 					indiceProx = indiceProx + 1
 					#print "indiceProx: " + str(indiceProx)			
@@ -43,40 +49,22 @@ class Priority():
 					a,b,processoAtual = heappop(plista)
 					print "processo " + str(processoAtual.pid) + " começou!"	
 					inicioProcessoAtual = clock
+
 			if (processoAtual != None):
 				print "executando o processo " + str(processoAtual.pid)
 				processoAtual.timeleft = processoAtual.timeleft - 1
 				print "falta " + str(processoAtual.timeleft) + " para ele acabar"
+
+				clock = clock + 1
 				if (processoAtual.timeleft == 0):
-					processoAtual.historico.append((inicioProcessoAtual,clock+1))
+					processoAtual.historico.append((inicioProcessoAtual, clock))
 					processoAtual = None
 					if (indiceProx == len(self.processos) and not plista):
 						break
-			print "\n\n"		
-			clock = clock + 1
+			else:
+				clock = clock + 1
 
-#class Escalonador():
-#	def __init__(self,processos,algoritmo):
-#		self.processos = processos
-#		self.algoritmo = algoritmo
-		
-
-class Processo():
-	def __init__ (self,inputrow):
-		self.chegada = inputrow[0]
-		self.pid = inputrow[1]
-		self.burst = inputrow[2]
-		self.prioridade = inputrow[3]
-		self.timeleft = self.burst
-		self.historico = []
-	def stringHistorico(self):
-		"""Retorna uma string para visualização do histórico do processo"""
-		s = ""
-		for stamp in self.historico:
-			s = s + "[inicio: " + str(stamp[0]) + " " + "final: " + str(stamp[1]) + "] "
-		return s
-
-
+			print "\n\n"
 
 def main():
 	f = open(sys.argv[1], 'rt')
@@ -99,4 +87,4 @@ def main():
 	e.run()
 
 if __name__ == "__main__":
-     main()
+     main()	
