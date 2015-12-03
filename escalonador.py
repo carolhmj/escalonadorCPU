@@ -41,8 +41,8 @@ class Priority():
 				if (plista):
 					print "temos uma lista de onde tirar!"
 					a,b,processoAtual = heappop(plista)
-				print "processo " + str(processoAtual.pid) + " começou!"	
-				inicioProcessoAtual = clock
+					print "processo " + str(processoAtual.pid) + " começou!"	
+					inicioProcessoAtual = clock
 			if (processoAtual != None):
 				print "executando o processo " + str(processoAtual.pid)
 				processoAtual.timeleft = processoAtual.timeleft - 1
@@ -69,6 +69,13 @@ class Processo():
 		self.prioridade = inputrow[3]
 		self.timeleft = self.burst
 		self.historico = []
+	def stringHistorico(self):
+		"""Retorna uma string para visualização do histórico do processo"""
+		s = ""
+		for stamp in self.historico:
+			s = s + "[inicio: " + str(stamp[0]) + " " + "final: " + str(stamp[1]) + "] "
+		return s
+
 
 
 def main():
