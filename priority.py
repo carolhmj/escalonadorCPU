@@ -3,6 +3,7 @@
 
 from heapq import *
 from inputReader import *
+from outputWriter import *
 from processo import Processo
 
 class Priority(object):
@@ -85,6 +86,7 @@ def main():
 
 	e = Priority(processlist)
 	e.run()
+	reporter(sys.argv,processlist)
 
 if __name__ == "__main__":
      main()	
