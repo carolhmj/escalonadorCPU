@@ -9,10 +9,12 @@ from roundrobin import RoundRobin
 from sjf import SJF
 from priorityP import PriorityP
 from priority import Priority
+from fcfs import FCFS
+from sjfp import SJFP
 
 def selecionarAlgoritmo(args,processos):
 	try:
-		nomeAlgoritmo = args[2]
+		nomeAlgoritmo = args[2].lower()
 	except IndexError:
 		print "Algoritmo não definido\nFinalizando..."
 		sys.exit()
@@ -32,6 +34,12 @@ def selecionarAlgoritmo(args,processos):
 		except IndexError:
 			print "Defina o quantum (terceiro argumento) para o algoritmo RoundRobin\nFinalizando..."
 			sys.exit()
+		except ValueError:
+   			print "Valor do quantum não é um inteiro\nFinalizando"
+			sys.exit()
+	 
+	print "Algoritmo não definido\nFinalizando..."
+	sys.exit()
 
 def main():
 	try:

@@ -30,6 +30,9 @@ class Priority(object):
 			print "prioridade: " + str(i.prioridade)
 			print " "
 		"""
+
+		""" Loop que controla qual processo vai entrar baseado em sua prioridade """
+
 		while(True):
 
 			if (indiceProx < len(self.processos)):

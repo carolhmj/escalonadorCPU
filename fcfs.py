@@ -7,7 +7,8 @@ from processo import Processo
 from priority import *
 
 class FCFS(Priority):
-	"""Classe que representa um escalonador FCFS que herda de Priority"""
+	"""Classe que representa um escalonador First Come First Serve. 
+	Esse algoritmo executa os processos na ordem em que eles chegam"""
 
 	def __init__(self,processos):
 		super(FCFS, self).__init__(processos)
