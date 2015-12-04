@@ -12,6 +12,7 @@ from priority import Priority
 from fcfs import FCFS
 from sjfp import SJFP
 
+
 def selecionarAlgoritmo(args,processos):
 	try:
 		nomeAlgoritmo = args[2].lower()
@@ -56,7 +57,7 @@ def main():
 	algoritmo = selecionarAlgoritmo(sys.argv,processos)
 	algoritmo.executar()
 
-	outputWriter(sys.argv,processos)
+	outputWriter(sys.argv,algoritmo.processos)
 
 if __name__ == "__main__":
      main()	

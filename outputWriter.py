@@ -26,8 +26,9 @@ def mediaVazao(processos,ttotal):
 
 def mediaTurnaround(processos):
 	turntotal = 0
+
 	for p in processos:
-		turntotal = turntotal + (p.historico[-1][1] - p.historico[0][0])
+		turntotal = turntotal + (p.historico[-1][1] - p.chegada)
 
 	return (turntotal/len(processos))
 
@@ -43,8 +44,8 @@ def mediaEspera(processos):
 		if len(p.historico) == 1:
 			pass
 		else:
-			for i, h in enumerate(p.historico[1:]):
-				print "\n"
+
+			for i, h in enumerate(p.historico[1:], 1):
 				esperatotal = esperatotal + (h[0] - p.historico[i-1][1])
 				print "h[0]: " + str(h[0])
 				print "p.historico[i-1][1]: " + str(p.historico[i-1][1])
