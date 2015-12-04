@@ -13,3 +13,4 @@ class FCFS(Priority):
 		super(FCFS, self).__init__(processos)
 	def prioridadeProcesso(self, processo):
 		return 0
+
