@@ -13,27 +13,3 @@ class FCFS(Priority):
 		super(FCFS, self).__init__(processos)
 	def prioridadeProcesso(self, processo):
 		return 0
-
-
-def main():
-	f = open(sys.argv[1], 'rt')
-	a = inputReader(f)
-	processlist = []
-	
-	print a
-
-	for row in a:
-		processlist.append(Processo(row))
-	"""
-	for i in processlist:
-		print "chegada: " + str(i.chegada)
-		print "pid: " + str(i.pid)
-		print "burst: " + str(i.burst)
-		print "prioridade: " + str(i.prioridade)
-		print " " """
-
-	e = FCFS(processlist)
-	e.run()
-
-if __name__ == "__main__":
-     main()	
