@@ -4,6 +4,7 @@
 import csv
 import sys
 
+
 """Leitor de inputs"""
 class inputReader():
 	def __init__(self,arquivo):

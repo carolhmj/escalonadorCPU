@@ -27,32 +27,25 @@ class RoundRobin(object):
 			if (indiceProx < len(self.processos)):
 				proxChegada = self.processos[indiceProx]
 				if (proxChegada.chegada == clock):
-					print "chegou o processo " + str(proxChegada.pid)
-					#Insere o valor na heap. O critério de ordenação é primeiro a prioridade do processo,
-					#depois o tempo de chegada
+
+					"""Insere o valor na heap. O critério de ordenação é primeiro a prioridade do processo,
+					depois o tempo de chegada"""
 					proxChegada.timeleft = proxChegada.burst
 					plista.append(proxChegada)
-					#Agora que já colocamos esse processo na heap, podemos investigar os próximos processos
-					#na lista de processos que chegarão
+
+					"""Agora que já colocamos esse processo na heap, podemos investigar os próximos processos
+					na lista de processos que chegarão"""
 					indiceProx = indiceProx + 1
 
-			print "clock: " + str(clock)
 
 			if (processoAtual == None):
-				print "não há um processo executando, vamos procurar um!"
 				if (plista):
-					print "temos uma lista de onde tirar!"
 					processoAtual = plista.popleft()
-					print "processo " + str(processoAtual.pid) + " começou!"	
 					inicioProcessoAtual = clock
-				else:
-					print "não achamos um processo!"
-			if (processoAtual != None):
 				
-				print "executando o processo " + str(processoAtual.pid)
+			if (processoAtual != None):
 				processoAtual.timeleft = processoAtual.timeleft - 1
-				print "falta " + str(processoAtual.timeleft) + " para ele acabar"
-
+				
 				clock = clock + 1
 				if (processoAtual.timeleft == 0):
 					processoAtual.historico.append((inicioProcessoAtual, clock))
@@ -70,4 +63,4 @@ class RoundRobin(object):
 			else:
 				clock = clock + 1
 
-			print "\n\n"
+

@@ -38,9 +38,6 @@ class outputWriter():
 
 		linha = ( "{0:55} {1:10}".format("Numero de processos:",self.numeroProcessos())) + '\n'
 		report.write(linha)
-	
-		report.write("\n\n")
-
 
 	def processamentoTotal(self):
 		r = 0
