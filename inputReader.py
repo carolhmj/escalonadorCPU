@@ -4,8 +4,8 @@
 import csv
 import sys
 
-"""Leitor de inputs"""
-def inputReader(arquivo): 
+def inputReader(arquivo):
+	"""Leitor de inputs""" 
 	f = arquivo
 	r = []
 	try:

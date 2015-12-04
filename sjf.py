@@ -8,7 +8,8 @@ from priority import *
 
 class SJF(Priority):
 	"""Classe que representa um algoritmo de escalonamento Shortest Job First. Esse algoritmo
-	executa o processo que está mais próximo de terminar."""
+	executa o processo que está mais próximo de terminar. Ele é uma especialização do algoritmo Priority, com a
+	prioridade definida como o tempo que falta para terminar"""
 
 	def __init__(self,processos):
 		super(SJF, self).__init__(processos)

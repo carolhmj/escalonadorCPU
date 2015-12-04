@@ -37,20 +37,12 @@ def mediaEspera(processos):
 	for p in processos:
 		print "\n"
 		esperatotal = esperatotal + (p.historico[0][0] - p.chegada)
-		print "p.historico: " + str(p.historico[0][0])
-		print "p.chegada: " + str(p.chegada) 		
-		print "Espera total: " + str(esperatotal)
-		print "\n"
 		if len(p.historico) == 1:
 			pass
 		else:
-
 			for i, h in enumerate(p.historico[1:], 1):
 				esperatotal = esperatotal + (h[0] - p.historico[i-1][1])
-				print "h[0]: " + str(h[0])
-				print "p.historico[i-1][1]: " + str(p.historico[i-1][1])
-				print "Espera total 2: " + str(esperatotal)
-				print "\n"
+				
 				
 
 	return (esperatotal/len(processos))

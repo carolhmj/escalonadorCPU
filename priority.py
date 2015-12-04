@@ -21,51 +21,41 @@ class Priority(object):
 		plista = []
 		processoAtual = None
 		inicioProcessoAtual = 0
-		"""
-		print "antes do while: "
-		for i in self.processos:
-			print "chegada: " + str(i.chegada)
-			print "pid: " + str(i.pid)
-			print "burst: " + str(i.burst)
-			print "prioridade: " + str(i.prioridade)
-			print " "
-		"""
-
-		""" Loop que controla qual processo vai entrar baseado em sua prioridade """
-
+	
 		while(True):
 
+			"""Verificamos o valor da lista de processos ordenados por
+			tempo de chegada, para sabermos se o processo chegou nesse
+			momento"""
+
 			if (indiceProx < len(self.processos)):
+
+				"""Insere o valor na heap. O critério de ordenação é primeiro a prioridade do processo,
+					depois o tempo de chegada"""
 				proxChegada = self.processos[indiceProx]
+
+				"""Agora que já colocamos esse processo na heap, passamos a verificar o próximo processo que
+					deve chegar"""
 				if (proxChegada.chegada == clock):
 					proxChegada.timeleft = proxChegada.burst
 					heappush(plista,(self.prioridadeProcesso(proxChegada), proxChegada.chegada, proxChegada))
-					#print "tamanho da plista: " + str(len(plista))
 					indiceProx = indiceProx + 1
-					#print "indiceProx: " + str(indiceProx)			
+								
 			
-			print "clock: " + str(clock) 
-
 			if (processoAtual == None):
-				print "não há um processo executando, vamos procurar um!"
 				if (plista):
-					print "temos uma lista de onde tirar!"
 					a,b,processoAtual = heappop(plista)
-					print "processo " + str(processoAtual.pid) + " começou!"	
 					inicioProcessoAtual = clock
-			if (processoAtual != None):
-				print "executando o processo " + str(processoAtual.pid)
-				processoAtual.timeleft = processoAtual.timeleft - 1
-				print "falta " + str(processoAtual.timeleft) + " para ele acabar"
 
+			if (processoAtual != None):
+				processoAtual.timeleft = processoAtual.timeleft - 1
+				
 				clock = clock + 1
 				if (processoAtual.timeleft == 0):
 					processoAtual.historico.append((inicioProcessoAtual, clock))
 					processoAtual = None
 					if (indiceProx == len(self.processos) and not plista):
-						print "\no último processo terminou de executar \nescalonador encerrado!"
 						break
 			else:
 				clock = clock + 1
 
-			print "\n\n"
