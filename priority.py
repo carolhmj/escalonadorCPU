@@ -15,7 +15,7 @@ class Priority(object):
 		self.processos = sorted(processos, key=lambda x: x.chegada)
 	def prioridadeProcesso(self, processo):
 		return processo.prioridade
-	def run(self):
+	def executar(self):
 		clock = 0
 		indiceProx = 0
 		plista = []
@@ -66,27 +66,3 @@ class Priority(object):
 				clock = clock + 1
 
 			print "\n\n"
-
-def main():
-	f = open(sys.argv[1], 'rt')
-	a = inputReader(f)
-	processlist = []
-	
-	print a
-
-	for row in a:
-		processlist.append(Processo(row))
-	"""
-	for i in processlist:
-		print "chegada: " + str(i.chegada)
-		print "pid: " + str(i.pid)
-		print "burst: " + str(i.burst)
-		print "prioridade: " + str(i.prioridade)
-		print " " """
-
-	e = Priority(processlist)
-	e.run()
-	reporter(sys.argv,processlist)
-
-if __name__ == "__main__":
-     main()	

@@ -59,7 +59,7 @@ def mediaTrocaContexto(processos):
 def numeroProcessos(processos):
 	return len(processos)
 
-def reporter(header,processos):
+def outputWriter(header,processos):
 	report = open("estatisticas.txt",'a')
 	linha = '==================================================================== \nParâmetros: ' + ' '.join(header) + '\n' + '====================================================================' + '\n'
 	report.write(linha)
