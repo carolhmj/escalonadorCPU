@@ -17,7 +17,6 @@ class Escalonador():
 	def __init__(self, args):
 		self.args = args
 		self.processos = []
-		self.algoritmo = self.selecionarAlgoritmo()
 
 	def executar(self):
 		try:
@@ -25,14 +24,14 @@ class Escalonador():
 		except IOError:
 			print "O arquivo de entrada não existe.\nFinalizando..."
 			sys.exit()
-		reader = inputReader(f)
-		a = reader.executar()
 
-		for row in a:
+		reader = inputReader(f)
+		listacsv = reader.executar()
+
+		for row in listacsv:
 			self.processos.append(Processo(row))
 
-		algoritmo = selecionarAlgoritmo()
-		
+		algoritmo = (self.selecionarAlgoritmo())
 		algoritmo.executar()
 
 		reporter = outputWriter(self.args,self.processos)
@@ -69,4 +68,4 @@ class Escalonador():
 
 if __name__ == "__main__":
      e = Escalonador(sys.argv)
-     e.executar
+     e.executar()
