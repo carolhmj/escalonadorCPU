@@ -48,16 +48,18 @@ def main():
 	except IOError:
 		print "O arquivo de entrada não existe.\nFinalizando..."
 		sys.exit()
-
-	a = inputReader(f)
+	reader = inputReader(f)
+	a = reader.executar()
 	processos = []
 	for row in a:
 		processos.append(Processo(row))
 
 	algoritmo = selecionarAlgoritmo(sys.argv,processos)
+	
 	algoritmo.executar()
 
-	outputWriter(sys.argv,algoritmo.processos)
+	reporter = outputWriter(sys.argv,processos)
+	reporter.executar()
 
 if __name__ == "__main__":
      main()	
