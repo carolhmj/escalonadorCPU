@@ -34,6 +34,7 @@ def main():
 
 	e = FCFS(processlist)
 	e.run()
+	reporter (sys.argv, processlist)
 
 if __name__ == "__main__":
      main()	

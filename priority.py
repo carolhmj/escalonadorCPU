@@ -50,7 +50,6 @@ class Priority(object):
 					a,b,processoAtual = heappop(plista)
 					print "processo " + str(processoAtual.pid) + " começou!"	
 					inicioProcessoAtual = clock
-
 			if (processoAtual != None):
 				print "executando o processo " + str(processoAtual.pid)
 				processoAtual.timeleft = processoAtual.timeleft - 1
@@ -61,6 +60,7 @@ class Priority(object):
 					processoAtual.historico.append((inicioProcessoAtual, clock))
 					processoAtual = None
 					if (indiceProx == len(self.processos) and not plista):
+						print "\no último processo terminou de executar \nescalonador encerrado!"
 						break
 			else:
 				clock = clock + 1
