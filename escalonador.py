@@ -9,6 +9,7 @@ from roundrobin import RoundRobin
 from sjf import SJF
 from priorityP import PriorityP
 from priority import Priority
+from fcfs import FCFS
 
 def selecionarAlgoritmo(args,processos):
 	try:
