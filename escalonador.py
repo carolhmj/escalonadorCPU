@@ -17,7 +17,7 @@ def selecionarAlgoritmo(args,processos):
 	try:
 		nomeAlgoritmo = args[2].lower()
 	except IndexError:
-		print "Algoritmo não definido\nFinalizando..."
+		print "Algoritmo não especificado\nFinalizando..."
 		sys.exit()
 	if nomeAlgoritmo == "priority":
 		return Priority(processos)
@@ -39,7 +39,7 @@ def selecionarAlgoritmo(args,processos):
    			print "Valor do quantum não é um inteiro\nFinalizando"
 			sys.exit()
 	 
-	print "Algoritmo não definido\nFinalizando..."
+	print "Algoritmo não existe\nFinalizando..."
 	sys.exit()
 
 def main():
